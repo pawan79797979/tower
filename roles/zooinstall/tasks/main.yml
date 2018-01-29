@@ -1,0 +1,22 @@
+---
+# tasks file for zooinstall
+   - name: Install all packages
+     yum: name={{item}} state=present update_cache=yes
+     with_items:
+       - java-1.8.0-openjdk.x86_64
+       - firewalld
+       - wget
+
+   - get_url: url=http://apache.org/dist/zookeeper/current/zookeeper-3.4.10.tar.gz dest=/home/
+
+   - copy:
+       src: /home/scripts/zscript1.sh
+       dest: /home/zscript1.sh
+
+   - name: setting permission
+     file: dest=/home/zscript1.sh mode=a+x
+
+   - name: executing the script on remote machine
+     shell: sh /home/zscript1.sh {{ ip1 }} {{ ip2 }} {{ ip3 }}
+     ignore_errors: yes
+
