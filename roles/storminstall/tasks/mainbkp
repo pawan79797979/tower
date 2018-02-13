@@ -1,0 +1,33 @@
+---
+# tasks file for storminstall
+# install storm
+   - name: Install all packages
+     yum: name={{item}} state=present update_cache=yes
+     with_items:
+       - java-1.8.0-openjdk.x86_64
+       - firewalld
+       - wget
+
+#   - get_url: url=http://apache.mirrors.ionfish.org/storm/apache-storm-1.0.2/apache-storm-1.0.2.tar.gz dest=/home/
+
+   - file:
+      path: /home/storm
+      state: directory
+      mode: 0755
+ 
+#   - name: install storm
+#     command: "{{item}}"
+#     with_items:
+#       - tar -xvzf /home/apache-storm-1.0.2.tar.gz
+#       - groupadd storm
+#       - adduser --system storm
+#       - usermod -a -G storm storm
+#       - mkdir /home/storm
+#       - cp /home/apache-storm-1.0.2 /home/storm
+
+
+   - name: Unarchive a file that needs to be downloaded 
+     unarchive:
+      src: http://apache.mirrors.ionfish.org/storm/apache-storm-1.0.2/apache-storm-1.0.2.tar.gz
+      dest: /home/storm
+      remote_src: yes

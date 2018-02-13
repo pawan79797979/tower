@@ -1,7 +1,5 @@
 ---
 # tasks file for zooinstall
-#/etc/ansible/roles/zooinstall/tasks/main.yml
-# tasks file for zooinstall
    - name: Install all packages
      yum: name={{item}} state=present update_cache=yes
      with_items:
@@ -21,3 +19,4 @@
    - name: executing the script on remote machine
      shell: sh /home/zscript1.sh {{ ip1 }} {{ ip2 }} {{ ip3 }}
      ignore_errors: yes
+

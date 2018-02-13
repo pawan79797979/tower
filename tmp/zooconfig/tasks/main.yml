@@ -1,8 +1,5 @@
 ---
 # tasks file for zooconfig
-#/etc/ansible/roles/zooconfig/tasks/main.yml
-
-# tasks file for zooconfig
    - copy:
        src: /home/scripts/zverify1.sh
        dest: /home/zverify1.sh
@@ -13,3 +10,4 @@
    - name: executing the script on remote machine
      shell: sh /home/zverify1.sh {{ ip1 }} {{ ip2 }} {{ ip3 }}
      ignore_errors: yes
+

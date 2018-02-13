@@ -1,0 +1,5 @@
+---
+- hosts: storm
+  roles:
+    - storminstall
+
